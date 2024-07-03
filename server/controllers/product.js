@@ -1,9 +1,9 @@
-const path = require("path")
+const path = require("path");
 const { checkImgSize } = require("../helpers/multer");
 const { successRes } = require("../helpers/response");
 
 const Product = require("../models/product");
-const {deleteImage} = require("../helpers/deleteImage")
+const { deleteImage } = require("../helpers/deleteImage");
 
 const uploadProduct = async (req, res, next) => {
   try {
@@ -13,11 +13,11 @@ const uploadProduct = async (req, res, next) => {
     //make a unique product id
     const allProduct = await Product.find({});
     let productId = 1;
-    if(allProduct.length > 0){
+    if (allProduct.length > 0) {
       productId = allProduct.length + 1;
     }
-    console.log("path of the file",req.file.path);
-    
+    console.log("path of the file", req.file.path);
+
     //stor in database
     const payload = {
       productId,
@@ -25,12 +25,11 @@ const uploadProduct = async (req, res, next) => {
       oldPrice: +req.body.oldPrice,
       newPrice: +req.body.newPrice,
       category: req.body.category,
-      image: `${process.env.SERVER_URL}:${process.env.SERVER_PORT}/images/${req.file.filename}`,
+      image: `${process.env.SERVER_URL}/images/${req.file.filename}`,
     };
     console.log(payload);
-    
-    const product = await Product.create(payload);
 
+    const product = await Product.create(payload);
 
     //success response
     return successRes(res, {
@@ -41,15 +40,14 @@ const uploadProduct = async (req, res, next) => {
   } catch (error) {
     //delete image from file server
     await deleteImage(req.file.path);
-    
 
     next(error);
   }
 };
 
-const deleteProduct = async (req,res,next)=>{
+const deleteProduct = async (req, res, next) => {
   try {
-    const {productId} = req.params;
+    const { productId } = req.params;
 
     //delete product from data base
     const deletedProduct = await Product.findOneAndDelete({
@@ -57,36 +55,29 @@ const deleteProduct = async (req,res,next)=>{
     }).lean();
 
     //success response
-    return successRes(res,{
-      statusCode : 200,
-      message : "product was successfuly deleted",
-      payload : deletedProduct
-    })
-
-
+    return successRes(res, {
+      statusCode: 200,
+      message: "product was successfuly deleted",
+      payload: deletedProduct,
+    });
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};
 
-const findProducts = async(req,res,next)=>{
+const findProducts = async (req, res, next) => {
   try {
     const products = await Product.find({});
-    
+
     return successRes(res, {
       statusCode: 200,
       message: "product was returned successfuly",
       payload: products,
     });
-
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
-
-
-
-
+};
 
 module.exports = {
   uploadProduct,
