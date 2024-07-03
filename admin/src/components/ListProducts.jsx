@@ -8,7 +8,7 @@ import Message from "./Message";
 
 const ListProducts = () => {
   const { data, isLoading, isError } = useFetch(
-    "http://localhost:3000/products"
+    "https://cloth-store-backend-4ogl.onrender.com/products"
   );
   const [products, setProducts] = useState(data);
 
@@ -28,7 +28,7 @@ const ListProducts = () => {
     if(!yes)return ;
     try {
       const response = await fetch(
-        `http://localhost:3000/products/${productId}`,
+        `https://cloth-store-backend-4ogl.onrender.com/products/${productId}`,
         {
           method: "DELETE",
         }
