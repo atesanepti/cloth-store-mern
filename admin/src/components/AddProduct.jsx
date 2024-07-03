@@ -40,7 +40,7 @@ export const AddProduct = () => {
     }
 
     const response = await fetch(
-      "https://cloth-store-backend-4ogl.onrender.com/products/upload",
+      "https://core-ecommerce.onrender.com/products/upload",
       {
         method: "POST",
         headers: {
@@ -62,7 +62,6 @@ export const AddProduct = () => {
       setMessageShow(false);
     }, 2000);
   };
-
 
   return (
     <div className="product-add">

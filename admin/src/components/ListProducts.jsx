@@ -3,12 +3,9 @@ import useFetch from "../Hooks/useFetch";
 import Product from "./Product";
 import Message from "./Message";
 
-
-
-
 const ListProducts = () => {
   const { data, isLoading, isError } = useFetch(
-    "https://cloth-store-backend-4ogl.onrender.com/products"
+    "https://core-ecommerce.onrender.com/products"
   );
   const [products, setProducts] = useState(data);
 
@@ -25,10 +22,10 @@ const ListProducts = () => {
 
   const handleDelete = async (productId) => {
     const yes = confirm("Are you sure to delete this product?");
-    if(!yes)return ;
+    if (!yes) return;
     try {
       const response = await fetch(
-        `https://cloth-store-backend-4ogl.onrender.com/products/${productId}`,
+        `https://core-ecommerce.onrender.com/products/${productId}`,
         {
           method: "DELETE",
         }
@@ -37,24 +34,22 @@ const ListProducts = () => {
       if (!data.success) {
         console.log(data.message);
       } else {
-        handleProducts(data.payload.id);
+        // handleProducts(data.payload.id);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const Status = ()=>{
-  if(isLoading){
-    return <Message message="Loading.." />
-  }
-  else if(products.length <= 0){
-    return <Message message="No products found" />
-  }
-  else{
-    return null
-  }
-}
+  const Status = () => {
+    if (isLoading) {
+      return <Message message="Loading.." />;
+    } else if (products.length <= 0) {
+      return <Message message="No products found" />;
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div className="products-list-container">

@@ -7,7 +7,7 @@ const Product = (props) => {
   const { productId, image, name, oldPrice, newPrice, category } = product;
 
   return (
-    <Link to={`/productsList/${productId}`}>
+
       <li className="contant">
         <div className="img">
           <img src={image} alt="product" />
@@ -23,7 +23,7 @@ const Product = (props) => {
           />
         </div>
       </li>
-    </Link>
+
   );
 };
 
