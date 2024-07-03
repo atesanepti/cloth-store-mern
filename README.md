@@ -1,12 +1,12 @@
 ©Cloth online store. 
 
-🚀Live n user mode - https://fluffy-sherbet-c313ea.netlify.app/
+🚀Live in user mode - https://fluffy-sherbet-c313ea.netlify.app/
 
-🚀Live in admin - https://keen-shortbread-9eabc4.netlify.app/ 
+🚀Live in admin mode - https://keen-shortbread-9eabc4.netlify.app/ 
 
 
 ### Key features
-- secure registaion and authentication system
+- secure registation and authentication system
 - controll by admin
     - new product create
     - product delete
