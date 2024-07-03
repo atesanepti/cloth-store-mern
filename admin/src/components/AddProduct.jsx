@@ -39,13 +39,16 @@ export const AddProduct = () => {
       formData.append(key, productDetails[key]);
     }
 
-    const response = await fetch("http://localhost:3000/products/upload", {
-      method: "POST",
-      headers: {
-        Accept: "Application/json",
-      },
-      body: formData,
-    });
+    const response = await fetch(
+      "https://cloth-store-backend-4ogl.onrender.com/products/upload",
+      {
+        method: "POST",
+        headers: {
+          Accept: "Application/json",
+        },
+        body: formData,
+      }
+    );
 
     const producData = await response.json();
 
